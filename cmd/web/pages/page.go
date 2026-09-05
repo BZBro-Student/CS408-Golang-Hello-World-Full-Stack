@@ -1,4 +1,4 @@
-package web
+package pages
 
 import (
 	"log"
@@ -8,13 +8,13 @@ import (
 const dataPath string = "cmd/web/data/"
 
 type Page struct {
-	title string
-	body  []byte
+	Title string
+	Body  []byte
 }
 
 // savePage : saves contents of page, returns error if write fails and nil otherwise
 func (p *Page) SavePage() error {
-	err := os.WriteFile(dataPath+p.title+".txt", p.body, 0644)
+	err := os.WriteFile(dataPath+p.Title+".txt", p.Body, 0644)
 	if err != nil {
 		log.Printf("Failed page save")
 		return err
@@ -30,7 +30,6 @@ func LoadPage(title string) (*Page, error) {
 		log.Printf("Failed page load")
 		return nil, err
 	}
-	page := Page{title: title, body: content}
+	page := Page{Title: title, Body: content}
 	return &page, err
-
 }

@@ -1,6 +1,24 @@
 package views
 
-templ edit(p *page) {
-    <div>Try to {p.title}</div>
-    
+import (
+"CS408-Golang-Hello-World-Full-Stack/cmd/web/pages"
+)
+
+templ Edit(p *pages.Page) {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{ p.Title }</title>
+</head>
+
+<body>
+    <label for="info">Info:</label>
+    <textarea id="info" name="message" rows="4" cols="50">{ string(p.Body) }</textarea>
+</body>
+
+</html>
+
 }
