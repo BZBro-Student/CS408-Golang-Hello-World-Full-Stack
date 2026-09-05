@@ -11,13 +11,14 @@ templ View(p *pages.Page) {
 }
 
 templ PartialLoad(p *pages.Page) {
-	<h1>{ p.Title }</h1>
-	<p>
-		<button hx-get={ "/edit/" + p.Title } hx-target="#content" hx-push-url="true">
-			Edit
-		</button>
-	</p>
-	<div>
-		{ string(p.Body) }
+	<div class="flex flex-col gap-4 max-w-xl">
+		<div class="border-2 border-accent-200 px-4 py-3 rounded-lg">
+			{string(p.Body)}
+		</div>
+		<div>
+			<button class="border-2 border-accent-200 px-4 py-1 rounded-lg hover:bg-accent-200/10 transition-colors" hx-get={ "/edit/" + p.Title } hx-target="#content" hx-push-url="true">
+				Edit
+			</button>
+		</div>
 	</div>
 }

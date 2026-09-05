@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@source "../../cmd/web/views/**/*.templ";
+@source "../../**/*.templ";
+
+@theme {
+  --color-accent-100: #f1f2f6;
+  --color-accent-200: #555555;
+  --color-accent-300: #0e3768;
+  --color-accent-400: #b0d8e3;
+  --color-accent-500: #efe897;
+}

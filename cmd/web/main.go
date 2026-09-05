@@ -16,10 +16,13 @@ func startServer(port string) {
 }
 
 func main() {
+	fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
 	http.HandleFunc("/", function.RootHandler)
 	http.HandleFunc("/view/", function.MakeHandler(function.ViewHandler))
 	http.HandleFunc("/edit/", function.MakeHandler(function.EditHandler))
-	http.HandleFunc("/save", function.MakeHandler(function.SaveHandler))
+	http.HandleFunc("/save/", function.MakeHandler(function.SaveHandler))
 
 	port := ":8080"
 	startServer(port)

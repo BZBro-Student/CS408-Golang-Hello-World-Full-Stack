@@ -11,14 +11,13 @@ templ Edit(p *pages.Page) {
 }
 
 templ PartialEdit(p *pages.Page) {
-	<h1>{ p.Title }</h1>
+	<h1>{ p.Title }:</h1>
 	<form hx-post={ "/save/" + p.Title } hx-target="#content" hx-push-url="true">
-		<div>
-			<label for="body">Body</label>
-			<textarea id="body" name="body">{ string(p.Body) }</textarea>
+		<div class="max-w-xl">
+			<textarea id="body" name="body" class="w-full h-32 resize p-2 border-2 border-accent-200 px-4 py-2 rounded-lg hover:bg-accent-200/10 transition-colors">{ string(p.Body) }</textarea>
 		</div>
 		<p>
-			<button type="submit">Save</button>
+			<button class="border-2 border-accent-200 px-4 py-2 rounded-lg hover:bg-accent-200/10 transition-colors" type="submit">Save</button>
 		</p>
 	</form>
 }
