@@ -1,23 +1,23 @@
 package views
 
-import (
-    "CS408-Golang-Hello-World-Full-Stack/cmd/web/pages"
-)
+import "CS408-Golang-Hello-World-Full-Stack/cmd/web/pages"
 
 templ View(p *pages.Page) {
-<!DOCTYPE html>
-<html lang="en">
+	@Layout(p.Title) {
+		<div id="content">
+			@PartialLoad(p)
+		</div>
+	}
+}
 
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{ p.Title }</title>
-</head>
-
-<body>
-    { string(p.Body) }
-</body>
-
-</html>
-
+templ PartialLoad(p *pages.Page) {
+	<h1>{ p.Title }</h1>
+	<p>
+		<button hx-get={ "/edit/" + p.Title } hx-target="#content" hx-push-url="true">
+			Edit
+		</button>
+	</p>
+	<div>
+		{ string(p.Body) }
+	</div>
 }

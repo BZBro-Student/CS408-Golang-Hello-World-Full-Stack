@@ -1,24 +1,24 @@
 package views
 
-import (
-"CS408-Golang-Hello-World-Full-Stack/cmd/web/pages"
-)
+import "CS408-Golang-Hello-World-Full-Stack/cmd/web/pages"
 
 templ Edit(p *pages.Page) {
-<!DOCTYPE html>
-<html lang="en">
+	@Layout(p.Title) {
+		<div id="content">
+			@PartialEdit(p)
+		</div>
+	}
+}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{ p.Title }</title>
-</head>
-
-<body>
-    <label for="info">Info:</label>
-    <textarea id="info" name="message" rows="4" cols="50">{ string(p.Body) }</textarea>
-</body>
-
-</html>
-
+templ PartialEdit(p *pages.Page) {
+	<h1>{ p.Title }</h1>
+	<form hx-post={ "/save/" + p.Title } hx-target="#content" hx-push-url="true">
+		<div>
+			<label for="body">Body</label>
+			<textarea id="body" name="body">{ string(p.Body) }</textarea>
+		</div>
+		<p>
+			<button type="submit">Save</button>
+		</p>
+	</form>
 }
