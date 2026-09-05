@@ -13,16 +13,24 @@ type Page struct {
 }
 
 // savePage : saves contents of page, returns error if write fails and nil otherwise
-func (p *Page) savePage() error {
-	err := os.WriteFile("cmd/web/data/"+p.title+".txt", p.body, 0644)
+func (p *Page) SavePage() error {
+	err := os.WriteFile(dataPath+p.title+".txt", p.body, 0644)
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("Failed page save")
 		return err
 	}
 	return nil
 }
 
 // loadPage : loads page contents into a page struct, return error on fail and nil otherwise
-func loadPage(title string) (*Page, error) {
+func LoadPage(title string) (*Page, error) {
+	content, err := os.ReadFile(dataPath + title + ".txt")
+
+	if err != nil {
+		log.Printf("Failed page load")
+		return nil, err
+	}
+	page := Page{title: title, body: content}
+	return &page, err
 
 }
