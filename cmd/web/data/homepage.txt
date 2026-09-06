@@ -1,2 +1,1 @@
 Hello World!
-\nWelcome to the intro to this Go Stack
